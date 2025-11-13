@@ -3,6 +3,7 @@ const productWrap = document.querySelector(".productWrap");
 let product_data = [];
 function init() {
   getProductList();
+  getShoppingCart();
 }
 init(); //初始化
 async function getProductList() {
@@ -65,6 +66,18 @@ product_select.addEventListener("click", function (e) {
   });
   renderProduct(selectedProductList);
 });
+
+async function getShoppingCart() {
+  try {
+    const res = await axios.get(
+      `https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/carts`
+    );
+    let shoppingCartData = res.data.carts;
+    renderShoppingCart(shoppingCartData, finalTotal);
+  } catch (error) {
+    console.log("get購物車錯誤", error.message);
+  }
+}
 
 // 加入購物車  -> 點擊事件在初始化的API裡
 const shoppingCartTable = document.querySelector(".shoppingCart-table");
