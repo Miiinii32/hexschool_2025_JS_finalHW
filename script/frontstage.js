@@ -73,7 +73,7 @@ async function getShoppingCart() {
       `https://livejs-api.hexschool.io/api/livejs/v1/customer/${apiPath}/carts`
     );
     let shoppingCartData = res.data.carts;
-    renderShoppingCart(shoppingCartData, finalTotal);
+    renderShoppingCart(shoppingCartData);
   } catch (error) {
     console.log("get購物車錯誤", error.message);
   }
